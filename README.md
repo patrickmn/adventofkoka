@@ -8,5 +8,5 @@
 
 ## Running
 
-- Put your puzzle input in `data/day01`
+- Put your puzzle input in `input/day01`
 - `koka -e src/year2020/day01.kk`
