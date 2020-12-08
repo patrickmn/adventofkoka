@@ -23,7 +23,7 @@ fun parse(contents : string) : parse-error<list<entry>> {
     char(' ')
     val chars = many(alpha)
     char('\n')
-    return Entry(from, to, chr, chars)
+    Entry(from, to, chr, chars)
   }
 }
 

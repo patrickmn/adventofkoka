@@ -7,9 +7,9 @@ import std/text/parse
 fun parse(contents : string) : parse-error<list<int>> {
   with contents.slice.parse-eof
   many {
-      val n = pint()
-      char('\n')
-      return n
+    val n = pint()
+    char('\n')
+    n
   }
 }
 
@@ -29,7 +29,7 @@ fun day01b(numbers : list<int>) : maybe<int> {
   if (n1 + n2 + n3 == 2020) {
     return (Just (n1 * n2 * n3))
   }
-  return Nothing
+  Nothing
 }
 
 fun main() {
