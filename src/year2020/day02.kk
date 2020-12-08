@@ -28,7 +28,7 @@ fun parse(contents : string) : parse-error<list<entry>> {
 }
 
 fun day02a(entries : list<entry>) : int {
-  sum(entries.map fn(entry) { return if (entry.passwordIsValid) then 1 else 0 })
+  sum(entries.map fn(entry) { if (entry.passwordIsValid) then 1 else 0 })
 }
 
 fun passwordIsValid(entry : entry) : bool {
@@ -37,7 +37,7 @@ fun passwordIsValid(entry : entry) : bool {
 }
 
 fun day02b(entries : list<entry>) : int {
-  sum(entries.map fn(entry) { return if (entry.passwordIsValid2) then 1 else 0 }) 
+  sum(entries.map fn(entry) { if (entry.passwordIsValid2) then 1 else 0 }) 
 }
 
 fun passwordIsValid2(entry : entry) : bool {
