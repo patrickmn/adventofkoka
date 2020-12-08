@@ -1,0 +1,59 @@
+module day02
+
+import std/os/file
+import std/os/path
+import std/text/parse
+
+struct entry {
+  min : int
+  max : int
+  character : char
+  password : list<char>
+}
+
+fun parse(contents : string) : parse-error<list<entry>> {
+  contents.slice.parse-eof({
+    many {
+      val from = pint()
+      char('-')
+      val to = pint()
+      char(' ')
+      val chr = alpha()
+      char(':')
+      char(' ')
+      val chars = many(alpha)
+      char('\n')
+      return Entry(from, to, chr, chars)
+    }
+  })
+}
+
+fun day02a(entries : list<entry>) : int {
+  sum(entries.map fn(entry) { return if (entry.passwordIsValid) then 1 else 0 })
+}
+
+fun passwordIsValid(entry : entry) : bool {
+  val occurrences = entry.password.filter fn(c) { c == entry.character }.length
+  occurrences >= entry.min && occurrences <= entry.max
+}
+
+fun day02b(entries : list<entry>) : int {
+  sum(entries.map fn(entry) { return if (entry.passwordIsValid2) then 1 else 0 }) 
+}
+
+fun passwordIsValid2(entry : entry) : bool {
+  val (pos1, pos2) = (entry.min - 1, entry.max - 1)
+  val pos1Match = entry.password[pos1].maybe(False, fn(x) { x == entry.character })
+  val pos2Match = entry.password[pos2].maybe(False, fn(x) { x == entry.character })
+  (pos1Match || pos2Match) && !(pos1Match && pos2Match) 
+}
+
+fun main() {
+  match ("input/day02".path.read-text-file.parse) {
+    ParseError(msg, _rest) -> println("parsing failed: " + msg)
+    ParseOk(parsed, _rest) -> {
+      parsed.day02a.println
+      parsed.day02b.println
+    }
+  }
+}
