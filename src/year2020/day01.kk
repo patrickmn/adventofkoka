@@ -5,37 +5,31 @@ import std/os/path
 import std/text/parse
 
 fun parse(contents : string) : parse-error<list<int>> {
-  contents.slice.parse-eof({
-    many {
+  with contents.slice.parse-eof
+  many {
       val n = pint()
       char('\n')
       return n
-    }
-  })
+  }
 }
 
 fun day01a(numbers : list<int>) : maybe<int> {
-  numbers.foreach-while fn(n1) {
-    numbers.foreach-while fn(n2) {
-      if (n1 + n2 == 2020) {
-        return (Just (n1 * n2))
-      }
-      return Nothing
-    }
+  with n1 = numbers.foreach-while
+  with n2 = numbers.foreach-while
+  if (n1 + n2 == 2020) {
+    return (Just (n1 * n2))
   }
+  Nothing
 }
 
 fun day01b(numbers : list<int>) : maybe<int> {
-  numbers.foreach-while fn(n1) {
-    numbers.foreach-while fn(n2) {
-      numbers.foreach-while fn(n3) {
-        if (n1 + n2 + n3 == 2020) {
-          return (Just (n1 * n2 * n3))
-        }
-        return Nothing
-      }
-    }
+  with n1 = numbers.foreach-while
+  with n2 = numbers.foreach-while
+  with n3 = numbers.foreach-while
+  if (n1 + n2 + n3 == 2020) {
+    return (Just (n1 * n2 * n3))
   }
+  return Nothing
 }
 
 fun main() {

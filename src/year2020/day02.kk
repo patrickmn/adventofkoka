@@ -12,20 +12,19 @@ struct entry {
 }
 
 fun parse(contents : string) : parse-error<list<entry>> {
-  contents.slice.parse-eof({
-    many {
-      val from = pint()
-      char('-')
-      val to = pint()
-      char(' ')
-      val chr = alpha()
-      char(':')
-      char(' ')
-      val chars = many(alpha)
-      char('\n')
-      return Entry(from, to, chr, chars)
-    }
-  })
+  with contents.slice.parse-eof
+  many {
+    val from = pint()
+    char('-')
+    val to = pint()
+    char(' ')
+    val chr = alpha()
+    char(':')
+    char(' ')
+    val chars = many(alpha)
+    char('\n')
+    return Entry(from, to, chr, chars)
+  }
 }
 
 fun day02a(entries : list<entry>) : int {
