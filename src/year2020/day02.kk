@@ -37,7 +37,7 @@ fun passwordIsValid(entry : entry) : bool {
 }
 
 fun day02b(entries : list<entry>) : int {
-  sum(entries.map fn(entry) { if (entry.passwordIsValid2) then 1 else 0 }) 
+  sum(entries.map fn(entry) { if (entry.passwordIsValid2) then 1 else 0 })
 }
 
 fun passwordIsValid2(entry : entry) : bool {
