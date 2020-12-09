@@ -19,6 +19,13 @@ public fun elem(x : int, xs : list<int>) : bool {
   }
 }
 
+public fun elem(x : char, xs : list<char>) : bool {
+  match (xs.find fn(n) { n == x }) {
+    Nothing -> False
+    Just(_value) -> True
+  }
+}
+
 public fun has-key(list : list<(string, b)>, key : string) : bool {
   match (list.lookup fn(k) { k == key }) {
     Nothing -> False
