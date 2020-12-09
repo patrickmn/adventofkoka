@@ -19,7 +19,7 @@ fun parse(contents : string) : list<list<(string, string)>> {
   }).maybe
 }
 
-fun day04a(passports : list<list<(string, string)>>) : console int {
+fun day04a(passports : list<list<(string, string)>>) : int {
   passports.how-many(is-valid)
 }
 

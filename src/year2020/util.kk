@@ -5,11 +5,11 @@ public fun and(bools : list<bool>) : bool {
 }
 
 public fun product(nums : list<int>) : int {
-  nums.foldr(1, (*))
+  nums.foldl(1, (*))
 }
 
 public fun how-many(list : list<a>, pred : a -> bool) : int {
-  list.foldr(0, fn(x, acc) { if (pred(x)) acc + 1 else acc })
+  list.foldl(0, fn(acc, x) { if (pred(x)) acc + 1 else acc })
 }
 
 public fun has-key(list : list<(string, b)>, key : string) : bool {
