@@ -4,6 +4,8 @@ import std/os/file
 import std/os/path
 import std/text/parse
 
+import util
+
 struct entry {
   min : int
   max : int
@@ -28,19 +30,19 @@ fun parse(contents : string) : parse-error<list<entry>> {
 }
 
 fun day02a(entries : list<entry>) : int {
-  sum(entries.map fn(entry) { if (entry.passwordIsValid) then 1 else 0 })
+  entries.how-many(is-valid)
 }
 
-fun passwordIsValid(entry : entry) : bool {
-  val occurrences = entry.password.filter fn(c) { c == entry.character }.length
-  occurrences >= entry.min && occurrences <= entry.max
+fun is-valid(entry : entry) : bool {
+  val n = entry.password.how-many fn(c) { c == entry.character }
+  n >= entry.min && n <= entry.max
 }
 
 fun day02b(entries : list<entry>) : int {
-  sum(entries.map fn(entry) { if (entry.passwordIsValid2) then 1 else 0 })
+  entries.how-many(is-valid2)
 }
 
-fun passwordIsValid2(entry : entry) : bool {
+fun is-valid2(entry : entry) : bool {
   val (pos1, pos2) = (entry.min - 1, entry.max - 1)
   val pos1Match = entry.password[pos1].maybe(False, fn(x) { x == entry.character })
   val pos2Match = entry.password[pos2].maybe(False, fn(x) { x == entry.character })

@@ -4,6 +4,8 @@ import std/os/file
 import std/os/path
 import std/text/parse
 
+import util
+
 fun parse(contents : string) : parse-error<list<list<char>>> {
   with contents.slice.parse-eof
   many {
@@ -41,7 +43,7 @@ fun day03b(rows : list<list<char>>) : div int {
     rows.count-trees(5, 1),
     rows.count-trees(7, 1),
     rows.count-trees(1, 2),
-  ].foldr(1, (*))
+  ].product
 }
 
 fun main() {
