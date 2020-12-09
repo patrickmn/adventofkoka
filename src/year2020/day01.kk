@@ -17,7 +17,7 @@ fun day01a(numbers : list<int>) : maybe<int> {
   with n1 = numbers.foreach-while
   with n2 = numbers.foreach-while
   if (n1 + n2 == 2020) {
-    return (Just (n1 * n2))
+    return Just (n1 * n2)
   }
   Nothing
 }
@@ -27,7 +27,7 @@ fun day01b(numbers : list<int>) : maybe<int> {
   with n2 = numbers.foreach-while
   with n3 = numbers.foreach-while
   if (n1 + n2 + n3 == 2020) {
-    return (Just (n1 * n2 * n3))
+    return Just (n1 * n2 * n3)
   }
   Nothing
 }

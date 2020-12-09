@@ -31,12 +31,12 @@ fun day05a(passes : list<boarding>) : int {
 }
 
 fun seat-id(boarding : boarding) : int {
-  val row = place((0, 127), boarding.rows)
-  val col = place((0, 7), boarding.cols)
+  val row = boarding.rows.place((0, 127))
+  val col = boarding.cols.place((0, 7))
   (row * 8) + col
 }
 
-fun place(range : (int, int), instructions : list<instruction>) : int {
+fun place(instructions : list<instruction>, range : (int, int)) : int {
   val res = instructions.init.foldl(range, fn(acc, instr) {
     val (low, high) = acc
     match (instr) {
@@ -50,8 +50,18 @@ fun place(range : (int, int), instructions : list<instruction>) : int {
   }
 }
 
-fun day05b(passes : list<boarding>) : int {
-  2
+fun day05b(passes : list<boarding>) : maybe<int> {
+  val sids = passes.map(seat-id)
+  // TODO: sort when available
+  with sid = sids.foreach-while
+  val (before, after) = (sid - 1, sid + 1)
+  if ((before - 1).elem(sids) && !(before.elem(sids))) {
+    return Just(before)
+  }
+  if ((after + 1).elem(sids) && !(after.elem(sids))) {
+    return Just(after)
+  }
+  Nothing
 }
 
 fun main() {
@@ -59,7 +69,10 @@ fun main() {
     ParseError(msg, _rest) -> println("parsing failed: " + msg)
     ParseOk(parsed, _rest) -> {
       parsed.day05a.println
-      parsed.day05b.println
+      match(parsed.day05b) {
+        Nothing -> println("seat not found")
+        Just(sid) -> sid.println
+      }
     }
   }
 }

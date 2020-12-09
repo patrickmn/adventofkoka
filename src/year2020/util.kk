@@ -4,12 +4,19 @@ public fun and(bools : list<bool>) : bool {
   bools.all(id)
 }
 
-public fun product(nums : list<int>) : int {
-  nums.foldl(1, (*))
+public fun product(ints : list<int>) : int {
+  ints.foldl(1, (*))
 }
 
-public fun how-many(list : list<a>, pred : a -> bool) : int {
-  list.foldl(0, fn(acc, x) { if (pred(x)) acc + 1 else acc })
+public fun how-many(xs : list<a>, pred : a -> bool) : int {
+  xs.foldl(0, fn(acc, x) { if (pred(x)) acc + 1 else acc })
+}
+
+public fun elem(x : int, xs : list<int>) : bool {
+  match (xs.find fn(n) { n == x }) {
+    Nothing -> False
+    Just(_value) -> True
+  }
 }
 
 public fun has-key(list : list<(string, b)>, key : string) : bool {
