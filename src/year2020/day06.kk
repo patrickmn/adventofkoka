@@ -2,7 +2,6 @@ module day06
 
 import std/os/file
 import std/os/path
-import std/text/parse
 
 import util
 
