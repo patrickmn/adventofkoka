@@ -6,8 +6,8 @@ import std/text/parse
 
 import util
 
-fun parse(contents : string) : list<list<(string, string)>> {
-  with entry = contents.split("\n\n").filter-map
+fun parse(s : string) : list<list<(string, string)>> {
+  with entry = s.split("\n\n").filter-map
   entry.slice.parse-eof({
     many {
       val k = none-of-many1(":")

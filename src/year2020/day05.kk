@@ -16,8 +16,8 @@ type instruction {
   TakeUpper
 }
 
-fun parse(contents : string) : parse-error<list<boarding>> {
-  with contents.slice.parse-eof
+fun parse(s : string) : parse-error<list<boarding>> {
+  with s.slice.parse-eof
   many {
     val rows = count(7, { ({ char('F'); TakeLower }) || ({ char('B'); TakeUpper }) })
     val cols = count(3, { ({ char('L'); TakeLower }) || ({ char('R'); TakeUpper }) })

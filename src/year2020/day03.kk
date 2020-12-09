@@ -6,8 +6,8 @@ import std/text/parse
 
 import util
 
-fun parse(contents : string) : parse-error<list<list<char>>> {
-  with contents.slice.parse-eof
+fun parse(s : string) : parse-error<list<list<char>>> {
+  with s.slice.parse-eof
   many {
     val row = many { one-of("#.") }
     char('\n')

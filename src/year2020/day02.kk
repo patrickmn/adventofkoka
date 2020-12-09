@@ -13,8 +13,8 @@ struct entry {
   password : list<char>
 }
 
-fun parse(contents : string) : parse-error<list<entry>> {
-  with contents.slice.parse-eof
+fun parse(s : string) : parse-error<list<entry>> {
+  with s.slice.parse-eof
   many {
     val from = pint()
     char('-')

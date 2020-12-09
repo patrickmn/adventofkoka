@@ -4,8 +4,8 @@ import std/os/file
 import std/os/path
 import std/text/parse
 
-fun parse(contents : string) : parse-error<list<int>> {
-  with contents.slice.parse-eof
+fun parse(s : string) : parse-error<list<int>> {
+  with s.slice.parse-eof
   many {
     val n = pint()
     char('\n')
