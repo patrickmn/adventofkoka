@@ -52,7 +52,6 @@ fun place(instructions : list<instruction>, range : (int, int)) : int {
 
 fun day05b(passes : list<boarding>) : maybe<int> {
   val sids = passes.map(seat-id)
-  // TODO: sort when available
   with sid = sids.foreach-while
   val (before, after) = (sid - 1, sid + 1)
   if ((before - 1).elem(sids) && !(before.elem(sids))) {
