@@ -28,18 +28,18 @@ fun summable(candidate : int, pre : list<int>) : maybe<(int, int)> {
   Nothing
 }
 
-fun day09b(nums : list<int>, invalid : int) : div maybe<int> {
+fun day09b(nums : list<int>, goal : int) : div maybe<int> {
   var sum := 0
   val range = nums.take-while fn(n) {
     sum := sum + n
-    sum < invalid
+    sum < goal
   }
-  if (sum == invalid) {
+  if (sum == goal) {
     Just(minimum(range) + maximum(range))
   } else {
     match (nums.drop(1)) {
       Nil -> Nothing
-      nums2 -> day09b(nums2, invalid)
+      nums2 -> day09b(nums2, goal)
     }
   }
 }
