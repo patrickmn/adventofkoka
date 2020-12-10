@@ -6,7 +6,7 @@ import std/text/parse
 
 import util
 
-fun parse(s : string) : div parse-error<list<bag>> {
+fun parse(s : string) : div parse-error<list<int>> {
   with s.slice.parse-eof
   many {
 
@@ -14,11 +14,11 @@ fun parse(s : string) : div parse-error<list<bag>> {
   }
 }
 
-fun dayXXa(passes : list<bag>) : int {
+fun dayXXa(nums : list<int>) : int {
   1
 }
 
-fun dayXXb(passes : list<bag>) : int {
+fun dayXXb(nums : list<int>) : int {
   2
 }
 

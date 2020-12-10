@@ -24,7 +24,7 @@ fun show(res : result) : string {
   }
 }
 
-fun parse(s : string) : div parse-error<list<instruction>> {
+fun parse(s : string) : parse-error<list<instruction>> {
   with s.slice.parse-eof
   many {
     val instr = choose(

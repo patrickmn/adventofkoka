@@ -1,5 +1,7 @@
 module util
 
+import std/text/parse
+
 public fun and(bools : list<bool>) : bool {
   bools.all(id)
 }
@@ -30,5 +32,14 @@ public fun has-key(list : list<(string, b)>, key : string) : bool {
   match (list.lookup fn(k) { k == key }) {
     Nothing -> False
     Just(_value) -> True
+  }
+}
+
+public fun parse-numbers(s : string) : parse-error<list<int>> {
+  with s.slice.parse-eof
+  many {
+    val n = pint()
+    char('\n')
+    n
   }
 }

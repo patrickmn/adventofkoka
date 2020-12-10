@@ -4,14 +4,7 @@ import std/os/file
 import std/os/path
 import std/text/parse
 
-fun parse(s : string) : parse-error<list<int>> {
-  with s.slice.parse-eof
-  many {
-    val n = pint()
-    char('\n')
-    n
-  }
-}
+import util
 
 fun day01a(numbers : list<int>) : maybe<int> {
   with n1 = numbers.foreach-while
@@ -33,7 +26,7 @@ fun day01b(numbers : list<int>) : maybe<int> {
 }
 
 fun main() {
-  match ("input/day01".path.read-text-file.parse) {
+  match ("input/day01".path.read-text-file.parse-numbers) {
     ParseError(msg, _rest) -> println("parsing failed: " + msg)
     ParseOk(parsed, _rest) -> {
       parsed.day01a.maybe("day01a: no result", show).println
